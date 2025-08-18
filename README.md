@@ -2,7 +2,7 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/Helm-Charts-blue?logo=helm&logoColor=white" alt="Helm Charts">
-  <img src="https://img.shields.io/github/license/EggyByte/helm-charts" alt="License">
+  <img src="https://img.shields.io/github/license/eggybyte-technology/eggybyte-helm-charts" alt="License">
   <img src="https://img.shields.io/badge/Maintained-yes-brightgreen.svg" alt="Maintained">
 </p>
 
