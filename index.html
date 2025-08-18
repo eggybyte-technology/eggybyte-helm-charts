@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EggyByte Helm Charts Repository</title>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+    <style>
+        :root {
+            --primary: #6e45e2;
+            --primary-light: #8d6eff;
+            --secondary: #00d1b2;
+            --dark: #0f172a;
+            --dark-light: #1e293b;
+            --light: #f8fafc;
+            --gray: #94a3b8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+            background-image:
+                radial-gradient(at 80% 0%, hsla(189, 100%, 56%, 0.1) 0px, transparent 50%),
+                radial-gradient(at 0% 50%, hsla(355, 100%, 93%, 0.1) 0px, transparent 50%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(to right, var(--light), var(--gray));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+        }
+
+        nav a {
+            color: var(--gray);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        nav a:hover {
+            color: var(--light);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .hero {
+            padding: 6rem 2rem;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, var(--light), var(--gray));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--gray);
+            margin-bottom: 2.5rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 3rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(to right, var(--primary), var(--primary-light));
+            color: white;
+            box-shadow: 0 4px 15px rgba(110, 69, 226, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(110, 69, 226, 0.6);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--light);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .terminal {
+            background: var(--dark-light);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 2rem auto;
+            max-width: 800px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            overflow: hidden;
+        }
+
+        .terminal-header {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .terminal-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .terminal-dot-red {
+            background: #ff5f56;
+        }
+
+        .terminal-dot-yellow {
+            background: #ffbd2e;
+        }
+
+        .terminal-dot-green {
+            background: #27c93f;
+        }
+
+        .terminal-content {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--light);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .terminal-content .command {
+            color: var(--secondary);
+        }
+
+        .terminal-content .comment {
+            color: var(--gray);
+            font-style: italic;
+        }
+
+        .features {
+            padding: 5rem 2rem;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--light);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: var(--dark-light);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+            border-color: rgba(110, 69, 226, 0.3);
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .feature-icon.ai {
+            background: linear-gradient(135deg, rgba(0, 209, 178, 0.1), rgba(0, 209, 178, 0.2));
+            color: var(--secondary);
+        }
+
+        .feature-icon.web3 {
+            background: linear-gradient(135deg, rgba(110, 69, 226, 0.1), rgba(110, 69, 226, 0.2));
+            color: var(--primary-light);
+        }
+
+        .feature-icon.opensource {
+            background: linear-gradient(135deg, rgba(248, 250, 252, 0.1), rgba(248, 250, 252, 0.2));
+            color: var(--light);
+        }
+
+        .feature-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: var(--light);
+        }
+
+        .feature-card p {
+            color: var(--gray);
+        }
+
+        .charts {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .charts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .chart-card {
+            background: var(--dark-light);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .chart-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .chart-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--light);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .chart-card .chart-badge {
+            font-size: 0.7rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .chart-badge.ai {
+            background: rgba(0, 209, 178, 0.1);
+            color: var(--secondary);
+            border: 1px solid rgba(0, 209, 178, 0.2);
+        }
+
+        .chart-badge.web3 {
+            background: rgba(110, 69, 226, 0.1);
+            color: var(--primary-light);
+            border: 1px solid rgba(110, 69, 226, 0.2);
+        }
+
+        .chart-badge.database {
+            background: rgba(248, 250, 252, 0.1);
+            color: var(--light);
+            border: 1px solid rgba(248, 250, 252, 0.2);
+        }
+
+        .chart-card p {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .chart-card .chart-version {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+
+        footer {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 3rem 2rem;
+            text-align: center;
+            margin-top: auto;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            background: linear-gradient(to right, var(--light), var(--gray));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-links a {
+            color: var(--gray);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--light);
+        }
+
+        .copyright {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+            }
+
+            .btn-group {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <div class="logo-icon">EB</div>
+            <div class="logo-text">EggyByte</div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#charts">Charts</a></li>
+                <li><a href="https://github.com/eggybyte-technology/eggybyte-helm-charts" target="_blank">GitHub</a>
+                </li>
+                <li><a href="https://docs.eggybyte.tech" target="_blank">Documentation</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>One-Click Deployments for Web3 & AI Applications</h1>
+            <p>EggyByte Helm Charts Repository provides production-ready Kubernetes charts for deploying cutting-edge
+                Web3 and AI applications with ease.</p>
+
+            <div class="btn-group">
+                <a href="#charts" class="btn btn-primary">Explore Charts</a>
+                <a href="https://github.com/eggybyte-technology/eggybyte-helm-charts" class="btn btn-secondary">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        viewBox="0 0 16 16" style="margin-right: 5px;">
+                        <path
+                            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
+                    </svg>
+                    GitHub
+                </a>
+            </div>
+
+            <div class="terminal">
+                <div class="terminal-header">
+                    <div class="terminal-dot terminal-dot-red"></div>
+                    <div class="terminal-dot terminal-dot-yellow"></div>
+                    <div class="terminal-dot terminal-dot-green"></div>
+                </div>
+                <div class="terminal-content">
+                    <span class="comment"># Add EggyByte Helm repository</span><br>
+                    <span class="command">helm repo add eggybyte https://eggybyte.github.io/helm-charts</span><br><br>
+
+                    <span class="comment"># Install a Web3 application</span><br>
+                    <span class="command">helm install my-web3-app eggybyte/web3-node</span><br><br>
+
+                    <span class="comment"># Install an AI platform</span><br>
+                    <span class="command">helm install my-ai-platform eggybyte/ai-stack</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="features" id="features">
+            <h2 class="section-title">Why Choose EggyByte Helm Charts?</h2>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon web3">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2v4"></path>
+                            <path d="m16 6 3-3"></path>
+                            <path d="M18 9h4"></path>
+                            <path d="m16 18 3 3"></path>
+                            <path d="M12 22v-4"></path>
+                            <path d="m8 18-3 3"></path>
+                            <path d="M6 9H2"></path>
+                            <path d="m8 6-3-3"></path>
+                            <circle cx="12" cy="12" r="4"></circle>
+                        </svg>
+                    </div>
+                    <h3>Web3 Ready</h3>
+                    <p>Pre-configured charts for blockchain nodes, decentralized storage, and Web3 infrastructure with
+                        optimized defaults for production environments.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon ai">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 8V4H8"></path>
+                            <rect width="16" height="12" x="4" y="8" rx="2"></rect>
+                            <path d="M2 14h2"></path>
+                            <path d="M20 14h2"></path>
+                            <path d="M15 13v2"></path>
+                            <path d="M9 13v2"></path>
+                        </svg>
+                    </div>
+                    <h3>AI Optimized</h3>
+                    <p>Specialized charts for machine learning platforms, vector databases, and AI inference services
+                        with GPU support and auto-scaling.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon opensource">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
+                            <polyline points="10 17 15 12 10 7"></polyline>
+                            <line x1="15" x2="3" y1="12" y2="12"></line>
+                        </svg>
+                    </div>
+                    <h3>Open Source</h3>
+                    <p>All our charts are fully open source with transparent configurations. Contribute, customize, and
+                        deploy with confidence.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="charts" id="charts">
+            <h2 class="section-title">Featured Helm Charts</h2>
+
+            <div class="charts-grid">
+                <div class="chart-card">
+                    <h3>Web3 Node <span class="chart-badge web3">Web3</span></h3>
+                    <p>Full Ethereum, Polkadot, or Cosmos node with optimized storage and RPC endpoints.</p>
+                    <div class="chart-version">v3.2.1</div>
+                </div>
+
+                <div class="chart-card">
+                    <h3>AI Platform <span class="chart-badge ai">AI</span></h3>
+                    <p>Complete machine learning platform with Jupyter, TensorFlow, and PyTorch support.</p>
+                    <div class="chart-version">v2.4.0</div>
+                </div>
+
+                <div class="chart-card">
+                    <h3>Vector DB <span class="chart-badge database">Database</span></h3>
+                    <p>High-performance vector database for AI applications with persistent storage.</p>
+                    <div class="chart-version">v1.8.3</div>
+                </div>
+
+                <div class="chart-card">
+                    <h3>IPFS Cluster <span class="chart-badge web3">Web3</span></h3>
+                    <p>Decentralized storage network with automatic content replication.</p>
+                    <div class="chart-version">v4.1.2</div>
+                </div>
+
+                <div class="chart-card">
+                    <h3>LLM Gateway <span class="chart-badge ai">AI</span></h3>
+                    <p>API gateway for large language models with rate limiting and caching.</p>
+                    <div class="chart-version">v1.2.0</div>
+                </div>
+
+                <div class="chart-card">
+                    <h3>Block Explorer <span class="chart-badge web3">Web3</span></h3>
+                    <p>Blockchain explorer with analytics dashboard for multiple chains.</p>
+                    <div class="chart-version">v2.5.4</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-logo">EggyByte Technology</div>
+
+        <div class="footer-links">
+            <a href="https://github.com/eggybyte-technology/eggybyte-helm-charts">GitHub</a>
+            <a href="https://docs.eggybyte.tech">Documentation</a>
+            <a href="https://eggybyte.tech">Website</a>
+            <a href="mailto:contact@eggybyte.tech">Contact</a>
+        </div>
+
+        <div class="copyright">
+            © 2025 EggyByte Technology. All charts are open source under MIT License.
+        </div>
+    </footer>
+</body>
+
+</html>
