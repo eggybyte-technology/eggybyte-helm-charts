@@ -3,12 +3,12 @@ entries:
   eggybyte-chain:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2025-08-18T20:37:07.375703+08:00"
+    created: "2025-08-18T20:38:04.521531+08:00"
     description: A Helm chart for Kubernetes
     digest: 3e0ca278f9eadd6c19e41992795613e81e5f03ce8f60d5cdd93f6705a62e095f
     name: eggybyte-chain
     type: application
     urls:
-    - https://charts.eggybyte.com/eggybyte-chain-0.1.0.tgz
+    - https://charts.eggybyte.com/charts/eggybyte-chain-0.1.0.tgz
     version: 0.1.0
-generated: "2025-08-18T20:37:07.375113+08:00"
+generated: "2025-08-18T20:38:04.520974+08:00"
