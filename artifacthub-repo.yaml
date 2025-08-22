@@ -1,0 +1,12 @@
+# Artifact Hub repository metadata file
+#
+# This file provides metadata about your repository so that Artifact Hub
+# can correctly identify ownership, enable verified publisher status,
+# and display repository details.
+
+repositoryID: eggybyte-helm-charts
+owners:
+  - name: John Feng
+    email: eggybyte@gmail.com
+  - name: EggyByte Affair
+    email: affair@eggybyte.com
