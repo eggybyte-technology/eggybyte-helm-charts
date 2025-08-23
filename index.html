@@ -5,803 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EggyByte HCR</title>
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap">
-    <style>
-        :root {
-            --primary: #6366f1;
-            --primary-light: #818cf8;
-            --primary-dark: #4f46e5;
-            --secondary: #06b6d4;
-            --secondary-light: #22d3ee;
-            --accent: #f59e0b;
-            --dark: #0f172a;
-            --dark-light: #1e293b;
-            --dark-lighter: #334155;
-            --light: #f8fafc;
-            --gray: #94a3b8;
-            --gray-light: #cbd5e1;
-            --success: #10b981;
-            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-            --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--dark);
-            color: var(--light);
-            line-height: 1.6;
-            background-image:
-                radial-gradient(at 80% 0%, hsla(240, 100%, 70%, 0.12) 0px, transparent 50%),
-                radial-gradient(at 0% 50%, hsla(189, 100%, 56%, 0.08) 0px, transparent 50%),
-                radial-gradient(at 80% 50%, hsla(355, 100%, 93%, 0.05) 0px, transparent 50%);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            overflow-x: hidden;
-        }
-
-        header {
-            background: rgba(15, 23, 42, 0.95);
-            backdrop-filter: blur(20px);
-            padding: 1rem 1.5rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .logo img {
-            border-radius: 12px;
-            box-shadow: var(--shadow);
-            transition: transform 0.3s ease;
-        }
-
-        .logo img:hover {
-            transform: scale(1.05);
-        }
-
-        .logo-text {
-            font-size: 1.5rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--light), var(--primary-light));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            color: var(--light);
-            font-size: 1.5rem;
-            cursor: pointer;
-            padding: 0.5rem;
-            border-radius: 8px;
-            transition: background 0.3s ease;
-        }
-
-        .mobile-menu-btn:hover {
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        nav ul {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        nav a {
-            color: var(--gray);
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            position: relative;
-            padding: 0.75rem 0;
-            font-size: 0.95rem;
-        }
-
-        nav a:hover {
-            color: var(--light);
-        }
-
-        nav a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            transition: width 0.3s ease;
-            border-radius: 1px;
-        }
-
-        nav a:hover::after {
-            width: 100%;
-        }
-
-        .hero {
-            padding: 4rem 1.5rem 6rem;
-            text-align: center;
-            max-width: 1000px;
-            margin: 0 auto;
-            position: relative;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(ellipse at center, rgba(99, 102, 241, 0.15) 0%, transparent 50%);
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: rgba(99, 102, 241, 0.1);
-            border: 1px solid rgba(99, 102, 241, 0.2);
-            color: var(--primary-light);
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-bottom: 2rem;
-            animation: fadeInUp 0.8s ease-out;
-        }
-
-        .hero-badge::before {
-            content: '🚀';
-            font-size: 1rem;
-        }
-
-        .hero h1 {
-            font-size: clamp(2.5rem, 8vw, 4rem);
-            font-weight: 800;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, var(--light) 0%, var(--gray-light) 50%, var(--primary-light) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            line-height: 1.1;
-            animation: fadeInUp 0.8s ease-out 0.2s both;
-            text-shadow: 0 0 40px rgba(99, 102, 241, 0.5);
-        }
-
-        .hero p {
-            font-size: clamp(1rem, 3vw, 1.25rem);
-            color: var(--gray);
-            margin-bottom: 3rem;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-            animation: fadeInUp 0.8s ease-out 0.4s both;
-            line-height: 1.7;
-        }
-
-        .btn-group {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            margin-bottom: 4rem;
-            animation: fadeInUp 0.8s ease-out 0.6s both;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 0.875rem 2rem;
-            border-radius: 12px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.95rem;
-            position: relative;
-            overflow: hidden;
-            min-width: 160px;
-            justify-content: center;
-        }
-
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s;
-        }
-
-        .btn:hover::before {
-            left: 100%;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary), var(--primary-light));
-            color: white;
-            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
-            border: 1px solid transparent;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.6);
-        }
-
-        .btn-secondary {
-            background: rgba(255, 255, 255, 0.05);
-            color: var(--light);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-        }
-
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.2);
-            transform: translateY(-2px);
-        }
-
-        .terminal {
-            background: var(--dark-light);
-            border-radius: 16px;
-            padding: 1.5rem;
-            margin: 2rem auto 0;
-            max-width: min(800px, 100%);
-            box-shadow: var(--shadow-xl);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            overflow: hidden;
-            animation: fadeInUp 0.8s ease-out 0.8s both;
-            position: relative;
-        }
-
-        .terminal::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.5), transparent);
-        }
-
-        .terminal-header {
-            display: flex;
-            gap: 0.5rem;
-            margin-bottom: 1.5rem;
-            align-items: center;
-        }
-
-        .terminal-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            position: relative;
-        }
-
-        .terminal-dot::after {
-            content: '';
-            position: absolute;
-            inset: 2px;
-            border-radius: 50%;
-            opacity: 0.6;
-        }
-
-        .terminal-dot-red {
-            background: #ff5f56;
-        }
-
-        .terminal-dot-red::after {
-            background: #ff5f56;
-        }
-
-        .terminal-dot-yellow {
-            background: #ffbd2e;
-        }
-
-        .terminal-dot-yellow::after {
-            background: #ffbd2e;
-        }
-
-        .terminal-dot-green {
-            background: #27c93f;
-        }
-
-        .terminal-dot-green::after {
-            background: #27c93f;
-        }
-
-        .terminal-title {
-            margin-left: auto;
-            font-size: 0.75rem;
-            color: var(--gray);
-            font-family: 'JetBrains Mono', monospace;
-        }
-
-        .terminal-content {
-            font-family: 'JetBrains Mono', monospace;
-            color: var(--light);
-            font-size: clamp(0.75rem, 2.5vw, 0.9rem);
-            line-height: 1.8;
-            overflow-x: auto;
-        }
-
-        .terminal-content .command {
-            color: var(--secondary);
-            font-weight: 500;
-        }
-
-        .terminal-content .comment {
-            color: var(--gray);
-            font-style: italic;
-        }
-
-        .features {
-            padding: 6rem 1.5rem;
-            background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.4) 100%);
-            position: relative;
-        }
-
-        .features::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 4rem;
-            font-size: clamp(1.75rem, 5vw, 2.5rem);
-            font-weight: 800;
-            color: var(--light);
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -0.5rem;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 3px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 2px;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .feature-card {
-            background: linear-gradient(145deg, var(--dark-light) 0%, var(--dark-lighter) 100%);
-            border-radius: 20px;
-            padding: 2.5rem 2rem;
-            transition: all 0.4s ease;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .feature-card:hover::before {
-            opacity: 1;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-xl);
-            border-color: rgba(99, 102, 241, 0.3);
-        }
-
-        .feature-icon {
-            width: 60px;
-            height: 60px;
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-            font-size: 1.5rem;
-            transition: transform 0.3s ease;
-        }
-
-        .feature-card:hover .feature-icon {
-            transform: scale(1.1);
-        }
-
-        .feature-icon.ai {
-            background: linear-gradient(135deg, rgba(6, 182, 212, 0.15), rgba(34, 211, 238, 0.25));
-            color: var(--secondary);
-        }
-
-        .feature-icon.web3 {
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(129, 140, 248, 0.25));
-            color: var(--primary-light);
-        }
-
-        .feature-icon.opensource {
-            background: linear-gradient(135deg, rgba(248, 250, 252, 0.15), rgba(203, 213, 225, 0.25));
-            color: var(--light);
-        }
-
-        .feature-card h3 {
-            font-size: 1.25rem;
-            margin-bottom: 1rem;
-            color: var(--light);
-            font-weight: 700;
-        }
-
-        .feature-card p {
-            color: var(--gray);
-            line-height: 1.7;
-        }
-
-        .charts {
-            padding: 6rem 1.5rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .charts-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
-            gap: 1.5rem;
-            margin-top: 3rem;
-        }
-
-        .chart-card {
-            background: linear-gradient(145deg, var(--dark-light) 0%, var(--dark-lighter) 100%);
-            border-radius: 16px;
-            padding: 2rem 1.5rem;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .chart-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .chart-card:hover::before {
-            opacity: 1;
-        }
-
-        .chart-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-lg);
-            border-color: rgba(99, 102, 241, 0.2);
-        }
-
-        .chart-card h3 {
-            font-size: 1.1rem;
-            margin-bottom: 0.75rem;
-            color: var(--light);
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            font-weight: 600;
-            flex-wrap: wrap;
-        }
-
-        .chart-card .chart-badge {
-            font-size: 0.7rem;
-            padding: 0.25rem 0.75rem;
-            border-radius: 50px;
-            font-weight: 600;
-            white-space: nowrap;
-        }
-
-        .chart-badge.ai {
-            background: rgba(6, 182, 212, 0.15);
-            color: var(--secondary);
-            border: 1px solid rgba(6, 182, 212, 0.3);
-        }
-
-        .chart-badge.web3 {
-            background: rgba(99, 102, 241, 0.15);
-            color: var(--primary-light);
-            border: 1px solid rgba(99, 102, 241, 0.3);
-        }
-
-        .chart-badge.database {
-            background: rgba(248, 250, 252, 0.15);
-            color: var(--light);
-            border: 1px solid rgba(248, 250, 252, 0.3);
-        }
-
-        .chart-card p {
-            color: var(--gray);
-            font-size: 0.9rem;
-            margin-bottom: 1.25rem;
-            line-height: 1.6;
-        }
-
-        .chart-card .chart-version {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.8rem;
-            color: var(--gray);
-            background: rgba(255, 255, 255, 0.05);
-            padding: 0.25rem 0.5rem;
-            border-radius: 6px;
-            display: inline-block;
-        }
-
-        footer {
-            background: linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.6) 100%);
-            padding: 4rem 1.5rem 2rem;
-            text-align: center;
-            margin-top: auto;
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
-        }
-
-        .footer-logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            margin-bottom: 2rem;
-            display: inline-block;
-            background: linear-gradient(135deg, var(--light), var(--primary-light));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .footer-links a {
-            color: var(--gray);
-            text-decoration: none;
-            transition: all 0.3s ease;
-            font-weight: 500;
-        }
-
-        .footer-links a:hover {
-            color: var(--light);
-            transform: translateY(-1px);
-        }
-
-        .copyright {
-            color: var(--gray);
-            font-size: 0.9rem;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Mobile optimizations */
-        @media (max-width: 768px) {
-            header {
-                padding: 1rem;
-            }
-
-            .logo-text {
-                font-size: 1.25rem;
-            }
-
-            .mobile-menu-btn {
-                display: block;
-            }
-
-            nav {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: rgba(15, 23, 42, 0.98);
-                backdrop-filter: blur(20px);
-                border-top: 1px solid rgba(255, 255, 255, 0.1);
-                padding: 1rem;
-            }
-
-            nav.active {
-                display: block;
-            }
-
-            nav ul {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            nav a {
-                display: block;
-                padding: 1rem;
-                border-radius: 8px;
-                background: rgba(255, 255, 255, 0.05);
-                text-align: center;
-            }
-
-            .hero {
-                padding: 3rem 1rem 4rem;
-            }
-
-            .hero-badge {
-                font-size: 0.8rem;
-                padding: 0.4rem 0.8rem;
-            }
-
-            .btn-group {
-                flex-direction: column;
-                align-items: center;
-                gap: 0.75rem;
-            }
-
-            .btn {
-                width: 100%;
-                max-width: 280px;
-            }
-
-            .terminal {
-                margin: 1.5rem auto 0;
-                padding: 1rem;
-            }
-
-            .terminal-content {
-                font-size: 0.75rem;
-            }
-
-            .features {
-                padding: 4rem 1rem;
-            }
-
-            .features-grid {
-                gap: 1.5rem;
-            }
-
-            .feature-card {
-                padding: 2rem 1.5rem;
-            }
-
-            .charts {
-                padding: 4rem 1rem;
-            }
-
-            .charts-grid {
-                gap: 1.25rem;
-            }
-
-            .chart-card {
-                padding: 1.5rem;
-            }
-
-            .chart-card h3 {
-                font-size: 1rem;
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 0.5rem;
-            }
-
-            footer {
-                padding: 3rem 1rem 1.5rem;
-            }
-
-            .footer-links {
-                gap: 1.5rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero {
-                padding: 2rem 0.75rem 3rem;
-            }
-
-            .features {
-                padding: 3rem 0.75rem;
-            }
-
-            .charts {
-                padding: 3rem 0.75rem;
-            }
-
-            .feature-card,
-            .chart-card {
-                padding: 1.5rem 1rem;
-            }
-        }
-
-        /* High DPI displays */
-        @media (-webkit-min-device-pixel-ratio: 2),
-        (min-resolution: 192dpi) {
-            .logo img {
-                image-rendering: -webkit-optimize-contrast;
-                image-rendering: crisp-edges;
-            }
-        }
-
-        /* Reduce motion for accessibility */
-        @media (prefers-reduced-motion: reduce) {
-            * {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-        }
-
-        /* Dark mode support (for browsers that support it) */
-        @media (prefers-color-scheme: dark) {
-            body {
-                background-color: var(--dark);
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
@@ -810,7 +19,7 @@
             <img src="assets/logo-1024.png" alt="EggyByte Logo" width="50" height="50">
             <div class="logo-text">EggyByte HCR</div>
         </div>
-        <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+        <button class="mobile-menu-btn" id="mobile-menu-btn">☰</button>
         <nav id="nav">
             <ul>
                 <li><a href="#features">Features</a></li>
@@ -824,13 +33,10 @@
 
     <main>
         <section class="hero">
-            <div class="hero-badge">
-                New Release Available
-            </div>
+            <div class="hero-badge">New Release Available</div>
             <h1>One-Click Deployments for Web3 & AI Applications</h1>
             <p>EggyByte Helm Charts Repository provides production-ready Kubernetes charts for deploying cutting-edge
                 Web3 and AI applications with ease and confidence.</p>
-
             <div class="btn-group">
                 <a href="#charts" class="btn btn-primary">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -849,7 +55,6 @@
                     GitHub
                 </a>
             </div>
-
             <div class="terminal">
                 <div class="terminal-header">
                     <div class="terminal-dot terminal-dot-red"></div>
@@ -860,19 +65,14 @@
                 <div class="terminal-content">
                     <span class="comment"># Add EggyByte Helm repository</span><br>
                     <span class="command">helm repo add eggybyte https://eggybyte.github.io/helm-charts</span><br><br>
-
                     <span class="comment"># Install a Web3 application</span><br>
-                    <span class="command">helm install my-web3-app eggybyte/web3-node</span><br><br>
-
-                    <span class="comment"># Install an AI platform</span><br>
-                    <span class="command">helm install my-ai-platform eggybyte/ai-stack</span>
+                    <span class="command">helm install my-web3-app eggybyte/web3-node</span>
                 </div>
             </div>
         </section>
 
         <section class="features" id="features">
-            <h2 class="section-title">Why Choose EggyByte Helm Charts?</h2>
-
+            <h2 class="section-title">Why Choose EggyByte?</h2>
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon web3">
@@ -890,10 +90,8 @@
                         </svg>
                     </div>
                     <h3>Web3 Ready</h3>
-                    <p>Pre-configured charts for blockchain nodes, decentralized storage, and Web3 infrastructure with
-                        optimized defaults for production environments.</p>
+                    <p>Pre-configured charts for blockchain nodes, decentralized storage, and Web3 infrastructure.</p>
                 </div>
-
                 <div class="feature-card">
                     <div class="feature-icon ai">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -907,10 +105,8 @@
                         </svg>
                     </div>
                     <h3>AI Optimized</h3>
-                    <p>Specialized charts for machine learning platforms, vector databases, and AI inference services
-                        with GPU support and auto-scaling capabilities.</p>
+                    <p>Specialized charts for ML platforms, vector databases, and AI inference with GPU support.</p>
                 </div>
-
                 <div class="feature-card">
                     <div class="feature-icon opensource">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -921,121 +117,41 @@
                         </svg>
                     </div>
                     <h3>Open Source</h3>
-                    <p>All our charts are fully open source with transparent configurations. Contribute, customize, and
-                        deploy with complete confidence and community support.</p>
+                    <p>All our charts are fully open source. Contribute, customize, and deploy with complete confidence.
+                    </p>
                 </div>
             </div>
         </section>
 
         <section class="charts" id="charts">
-            <h2 class="section-title">Featured Helm Charts</h2>
-
-            <div class="charts-grid">
-                <div class="chart-card">
-                    <h3>Web3 Node <span class="chart-badge web3">Web3</span></h3>
-                    <p>Full Ethereum, Polkadot, or Cosmos node with optimized storage and RPC endpoints.</p>
-                    <div class="chart-version">v3.2.1</div>
-                </div>
-
-                <div class="chart-card">
-                    <h3>AI Platform <span class="chart-badge ai">AI</span></h3>
-                    <p>Complete machine learning platform with Jupyter, TensorFlow, and PyTorch support.</p>
-                    <div class="chart-version">v2.4.0</div>
-                </div>
-
-                <div class="chart-card">
-                    <h3>Vector DB <span class="chart-badge database">Database</span></h3>
-                    <p>High-performance vector database for AI applications with persistent storage.</p>
-                    <div class="chart-version">v1.8.3</div>
-                </div>
-
-                <div class="chart-card">
-                    <h3>IPFS Cluster <span class="chart-badge web3">Web3</span></h3>
-                    <p>Decentralized storage network with automatic content replication.</p>
-                    <div class="chart-version">v4.1.2</div>
-                </div>
-
-                <div class="chart-card">
-                    <h3>LLM Gateway <span class="chart-badge ai">AI</span></h3>
-                    <p>API gateway for large language models with rate limiting and caching.</p>
-                    <div class="chart-version">v1.2.0</div>
-                </div>
-
-                <div class="chart-card">
-                    <h3>Block Explorer <span class="chart-badge web3">Web3</span></h3>
-                    <p>Blockchain explorer with analytics dashboard for multiple chains.</p>
-                    <div class="chart-version">v2.5.4</div>
-                </div>
+            <h2 class="section-title">Helm Chart Repository</h2>
+            <div class="search-container">
+                <input type="text" id="chart-search"
+                    placeholder=" Search charts (e.g., 'vector', 'web3', 'ai-stack')...">
+            </div>
+            <div id="charts-list-container">
+                <!-- Los charts se cargarán aquí dinámicamente -->
             </div>
         </section>
     </main>
 
     <footer>
-        <div class="footer-logo"><img src="assets/logo-text.png" alt="EggyByte Logo" width="200" height="50"> </div>
-
+        <div class="footer-logo">
+            <img src="assets/logo-text.png" alt="EggyByte Logo" width="200" height="50">
+        </div>
         <div class="footer-links">
             <a href="https://github.com/eggybyte-technology/eggybyte-helm-charts">GitHub</a>
             <a href="https://docs.eggybyte.com">Documentation</a>
             <a href="https://www.eggybyte.com">Website</a>
             <a href="mailto:affair@eggybyte.com">Contact</a>
         </div>
-
         <div class="copyright">
             © 2025 EggyByte Technology. All charts are open source under MIT License.
         </div>
     </footer>
 
-    <script>
-        function toggleMobileMenu() {
-            const nav = document.getElementById('nav');
-            nav.classList.toggle('active');
-        }
-
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('nav a').forEach(link => {
-            link.addEventListener('click', () => {
-                document.getElementById('nav').classList.remove('active');
-            });
-        });
-
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', (e) => {
-            const nav = document.getElementById('nav');
-            const menuBtn = document.querySelector('.mobile-menu-btn');
-
-            if (!nav.contains(e.target) && !menuBtn.contains(e.target)) {
-                nav.classList.remove('active');
-            }
-        });
-
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Add scroll effect to header
-        let lastScrollTop = 0;
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-            if (scrollTop > lastScrollTop && scrollTop > 100) {
-                header.style.transform = 'translateY(-100%)';
-            } else {
-                header.style.transform = 'translateY(0)';
-            }
-            lastScrollTop = scrollTop;
-        });
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>
