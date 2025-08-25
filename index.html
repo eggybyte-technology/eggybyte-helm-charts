@@ -4,22 +4,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EggyByte HCR</title>
+    <title>EggyByte HCR | Helm Chart Repository for Web3 & AI</title>
+    <meta name="description"
+        content="EggyByte Helm Charts Repository: One-click deployments for Web3 and AI applications on Kubernetes.">
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Orbitron:wght@700&display=swap"
         rel="stylesheet">
+    <link rel="icon" href="assets/logo-1024.png" type="image/png">
 </head>
 
 <body>
+    <canvas id="tech-background"></canvas>
     <header>
         <div class="logo">
             <img src="assets/logo-1024.png" alt="EggyByte Logo" width="50" height="50">
             <div class="logo-text">EggyByte HCR</div>
         </div>
-        <button class="mobile-menu-btn" id="mobile-menu-btn">☰</button>
+        <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle Menu">☰</button>
         <nav id="nav">
             <ul>
                 <li><a href="#features">Features</a></li>
@@ -33,7 +37,9 @@
 
     <main>
         <section class="hero">
-            <div class="hero-badge">New Release Available</div>
+            <div class="hero-badge">
+                <span class="pulse-dot"></span>New Release Available
+            </div>
             <h1>One-Click Deployments for Web3 & AI Applications</h1>
             <p>EggyByte Helm Charts Repository provides production-ready Kubernetes charts for deploying cutting-edge
                 Web3 and AI applications with ease and confidence.</p>
@@ -46,7 +52,8 @@
                     </svg>
                     Explore Charts
                 </a>
-                <a href="https://github.com/eggybyte-technology/eggybyte-helm-charts" class="btn btn-secondary">
+                <a href="https://github.com/eggybyte-technology/eggybyte-helm-charts" target="_blank"
+                    class="btn btn-secondary">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                         viewBox="0 0 16 16">
                         <path
@@ -57,16 +64,19 @@
             </div>
             <div class="terminal">
                 <div class="terminal-header">
-                    <div class="terminal-dot terminal-dot-red"></div>
-                    <div class="terminal-dot terminal-dot-yellow"></div>
-                    <div class="terminal-dot terminal-dot-green"></div>
-                    <div class="terminal-title">terminal</div>
+                    <div class="terminal-dots">
+                        <div class="terminal-dot" style="background:#ff5f56;"></div>
+                        <div class="terminal-dot" style="background:#ffbd2e;"></div>
+                        <div class="terminal-dot" style="background:#27c93f;"></div>
+                    </div>
+                    <div class="terminal-title">zsh</div>
                 </div>
                 <div class="terminal-content">
                     <span class="comment"># Add EggyByte Helm repository</span><br>
-                    <span class="command">helm repo add eggybyte https://eggybyte.github.io/helm-charts</span><br><br>
+                    <span class="prompt">$</span><span class="command"> helm repo add eggybyte
+                        https://eggybyte.github.io/helm-charts</span><br><br>
                     <span class="comment"># Install a Web3 application</span><br>
-                    <span class="command">helm install my-web3-app eggybyte/web3-node</span>
+                    <span class="prompt">$</span><span class="command"> helm install my-app eggybyte/web3-node</span>
                 </div>
             </div>
         </section>
@@ -126,23 +136,29 @@
         <section class="charts" id="charts">
             <h2 class="section-title">Helm Chart Repository</h2>
             <div class="search-container">
+                <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
                 <input type="text" id="chart-search"
-                    placeholder=" Search charts (e.g., 'vector', 'web3', 'ai-stack')...">
+                    placeholder="Search charts (e.g., 'vector', 'web3', 'ai-stack')...">
             </div>
             <div id="charts-list-container">
-                <!-- Los charts se cargarán aquí dinámicamente -->
+                <div class="loader"></div>
             </div>
         </section>
     </main>
 
     <footer>
         <div class="footer-logo">
-            <img src="assets/logo-text.png" alt="EggyByte Logo" width="200" height="50">
+            <img src="assets/logo-text.png" alt="EggyByte Logo Text" width="200" height="50">
         </div>
         <div class="footer-links">
-            <a href="https://github.com/eggybyte-technology/eggybyte-helm-charts">GitHub</a>
-            <a href="https://docs.eggybyte.com">Documentation</a>
-            <a href="https://www.eggybyte.com">Website</a>
+            <a href="https://github.com/eggybyte-technology/eggybyte-helm-charts" target="_blank"
+                rel="noopener noreferrer">GitHub</a>
+            <a href="https://docs.eggybyte.com" target="_blank" rel="noopener noreferrer">Documentation</a>
+            <a href="https://www.eggybyte.com" target="_blank" rel="noopener noreferrer">Website</a>
             <a href="mailto:affair@eggybyte.com">Contact</a>
         </div>
         <div class="copyright">
@@ -151,7 +167,7 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 </body>
 
 </html>

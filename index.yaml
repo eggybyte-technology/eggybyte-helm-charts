@@ -8,11 +8,11 @@ entries:
         scalable deployment
       licenses: MIT
     apiVersion: v2
-    appVersion: 3.0.0
-    created: "2025-08-24T06:44:37.45864+08:00"
+    appVersion: 1.0.0
+    created: "2025-08-25T20:59:24.443971+08:00"
     description: Enterprise-grade Hyperledger Besu blockchain with unified deployment
       architecture and kubectl-based initialization
-    digest: f03e24e482514793c47e2f8c519c3759dbd1bba7e0d02fe74845aae46f424751
+    digest: 6105fce9bba5f861350404157212fb8372d9d5f17342347353906be7db4fbf9a
     home: https://github.com/eggybyte-technology/eggybyte-chain
     icon: https://eggybyte.com/favicon.ico
     keywords:
@@ -39,76 +39,6 @@ entries:
     - https://github.com/eggybyte/crypto/tree/main/tools/besu-config-manager
     type: application
     urls:
-    - https://charts.eggybyte.com/releases/eggybyte-chain-3.0.0.tgz
-    version: 3.0.0
-  - annotations:
-      category: Infrastructure
-      description: Production-ready Hyperledger Besu blockchain infrastructure with
-        dynamic node management and zero-gas network capabilities
-      licenses: MIT
-    apiVersion: v2
-    appVersion: 1.0.1
-    created: "2025-08-24T06:44:37.45799+08:00"
-    description: A comprehensive Helm chart for deploying Hyperledger Besu private
-      blockchain networks with QBFT consensus
-    digest: d5932402667418498d0e802c3390978c511ee1f4f6b887b8b0cfaa8b439722bf
-    home: https://github.com/eggybyte/crypto
-    icon: https://eggybyte.com/favicon.ico
-    keywords:
-    - blockchain
-    - hyperledger
-    - besu
-    - ethereum
-    - qbft
-    - private-network
-    - consensus
-    - web3
-    - dynamic-node-management
-    - zero-gas-network
-    maintainers:
-    - email: support@eggybyte.com
-      name: EggyByte Technology
-    name: eggybyte-chain
-    sources:
-    - https://github.com/eggybyte/crypto/tree/main/helm/eggybyte-chain
-    - https://github.com/eggybyte/crypto/tree/main/tools/besu-config-manager
-    type: application
-    urls:
-    - https://charts.eggybyte.com/releases/eggybyte-chain-1.0.1.tgz
-    version: 1.0.1
-  - annotations:
-      category: Infrastructure
-      description: Production-ready Hyperledger Besu blockchain infrastructure with
-        dynamic node management and zero-gas network capabilities
-      licenses: MIT
-    apiVersion: v2
-    appVersion: 1.0.0
-    created: "2025-08-24T06:44:37.45724+08:00"
-    description: A comprehensive Helm chart for deploying Hyperledger Besu private
-      blockchain networks with QBFT consensus
-    digest: 359e6fd0144564adff92a0457e1f7a303ebed9fa1fbc354d973adfe1e63e0508
-    home: https://github.com/eggybyte/crypto
-    icon: https://eggybyte.com/favicon.ico
-    keywords:
-    - blockchain
-    - hyperledger
-    - besu
-    - ethereum
-    - qbft
-    - private-network
-    - consensus
-    - web3
-    - dynamic-node-management
-    - zero-gas-network
-    maintainers:
-    - email: support@eggybyte.com
-      name: EggyByte Technology
-    name: eggybyte-chain
-    sources:
-    - https://github.com/eggybyte/crypto/tree/main/helm/eggybyte-chain
-    - https://github.com/eggybyte/crypto/tree/main/tools/besu-config-manager
-    type: application
-    urls:
     - https://charts.eggybyte.com/releases/eggybyte-chain-1.0.0.tgz
     version: 1.0.0
-generated: "2025-08-24T06:44:37.456363+08:00"
+generated: "2025-08-25T20:59:24.443042+08:00"
