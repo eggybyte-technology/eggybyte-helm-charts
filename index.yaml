@@ -9,12 +9,12 @@ entries:
       licenses: MIT
     apiVersion: v2
     appVersion: 1.0.0
-    created: "2025-08-25T20:59:24.443971+08:00"
+    created: "2025-08-25T21:17:28.389148+08:00"
     description: Enterprise-grade Hyperledger Besu blockchain with unified deployment
       architecture and kubectl-based initialization
-    digest: 6105fce9bba5f861350404157212fb8372d9d5f17342347353906be7db4fbf9a
+    digest: 756783ad77d33b74531c7afcc1d63e7e884caa35a0641526d7d9aa0939e08fa5
     home: https://github.com/eggybyte-technology/eggybyte-chain
-    icon: https://eggybyte.com/favicon.ico
+    icon: https://charts.eggybyte.com/favicon.png
     keywords:
     - blockchain
     - hyperledger
@@ -41,4 +41,4 @@ entries:
     urls:
     - https://charts.eggybyte.com/releases/eggybyte-chain-1.0.0.tgz
     version: 1.0.0
-generated: "2025-08-25T20:59:24.443042+08:00"
+generated: "2025-08-25T21:17:28.387952+08:00"
