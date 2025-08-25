@@ -4,7 +4,7 @@
 # can correctly identify ownership, enable verified publisher status,
 # and display repository details.
 
-repositoryID: eggybyte-helm-charts
+repositoryID: eggybyte-hcr
 owners:
   - name: John Feng
     email: eggybyte@gmail.com
